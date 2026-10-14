@@ -1,0 +1,80 @@
+---
+title: "RExercise#3_Evangelista"
+author: "Destini Maxim Evangelista"
+date: "2026-10-14"
+output: html_document
+---
+PART A
+```{r}
+scores <- c(88, 92, 79, 95, 84)
+scores
+```
+
+```{r}
+subjects <- c("Math", "Science", "English", "History", "PE")
+subjects
+```
+
+```{r}
+seq(1, 19, by = 2)
+```
+
+```{r}
+seq(0, 1, length.out = 5)
+```
+
+```{r}
+rep("A", 4)
+```
+
+```{r}
+rep(c("A", "B"), each = 2)
+```
+
+```{r}
+rep(c("A", "B"), times = 2)
+```
+Question #1
+```{r}
+age <- c(15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8)
+
+length(age)
+
+1/age
+
+new_age <- c(age, 0, age) #The new age becomes double the age 
+new_age
+
+min(age)
+max(age)
+```
+Question #2
+```{r}
+rep(c("A","B"), each = 2)
+rep(c("A","B"), times = 2)
+```
+each = Repeats the individual elements inside the vector,
+times = Repeats the entire vector,
+
+Question #3
+```{r}
+seq(1, 20, by = 2)
+seq(1, 20, length.out = 5)
+```
+by = This controls the increment between the numbers and you can use this if you know the precise increment needed between values.
+
+length.out = Controls all the elements and gets the exact number stated and use this to repeat values until a specific total length is reached.
+
+Question #4
+```{r}
+vec_num <- seq(20, 60)
+vec_num
+
+mean(vec_num)
+
+sum(vec_num)
+```
+
+
+
+
