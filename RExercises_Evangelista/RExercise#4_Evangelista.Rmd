@@ -1,0 +1,100 @@
+---
+title: "RExercise#4_Evangelista"
+author: "Destini Maxim Evangelista"
+date: "2026-10-15"
+output: html_document
+---
+PART A
+
+Question #1
+```{r}
+ages <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24, 33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18)
+```
+```{r}
+length(ages)
+```
+```{r}
+min(ages)
+max(ages)
+```
+```{r}
+ages[c(13:18, 33:35)]
+```
+```{r}
+ages[-c(10, 20, 30, 40)]
+```
+```{r}
+ages[c(4, 14, 24, 44)] <- 0
+ages
+```
+
+Question #2
+```{r}
+data(rivers)
+
+length(rivers) 
+sum(rivers)   
+mean(rivers)  
+median(rivers) 
+var(rivers)   
+sd(rivers)
+min(rivers)  
+max(rivers) 
+```
+
+```{r}
+river_stats <- c(Length = length(rivers), Sum = sum(rivers), Mean = mean(rivers), Median = median(rivers), Variance = var(rivers), SD = sd(rivers), Min = min(rivers), Max = max(rivers)
+)
+
+river_stats
+```
+
+Question #3
+```{r}
+power_ranking <- 1:25
+
+celebrity_name <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump", "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Bradd Pitt", "Peter Jackson", "Dr. Phil McGraw", "Jay Lenon", "Celine Dion", "Kobe Bryant"
+)
+
+pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31
+)
+```
+
+```{r}
+jk_index <- which(celebrity_name == "J.K Rowling")
+
+power_ranking[jk_index] <- 15
+pay[jk_index] <- 90
+```
+
+Question #4
+```{r}
+vegetables <- list("Tomato", "Carrots", "Cilantro", "Potato", "Asparagus", "Eggplant", "Onion", "Cucumber", "Garlic", "Cabbage")
+```
+
+```{r}
+vegetables <- c(vegetables, list("Beans", "Peas"))
+vegetables
+```
+It added the additional vegetables 
+
+```{r}
+length(vegetables)
+```
+
+```{r}
+new_veggies <- list("Broccoli", "Bell pepper", "Squash", "Radish")
+vegetables <- c(vegetables[1:5], new_veggies, vegetables[6:length(vegetables)])
+vegetables
+```
+It added the new veggies after 5
+
+```{r}
+length(vegetables)
+```
+
+
+
+
+
+
