@@ -73,7 +73,119 @@ vec_num
 mean(vec_num)
 
 sum(vec_num)
+
+length(vec_num) #it has 41 data points
 ```
+
+PART B
+```{r}
+grades <- c(88, 92, 79, 95, 84)
+names(grades) <- c("Math", "Science", "English", "History", "PE")
+```
+```{r}
+grades[3]
+grades[c(1, 4)]
+grades[c("Science", "PE")]
+
+grades[-c(1, 4)]
+
+grades[grades >= 85]
+```
+
+Question #5
+Negative indexing is best when you know the position of the element you want to remove, for example removing a certain item from your list of expenses. Logical indexing is best when you want to filter by a condition, for example keeping only the shopping items that cost 1000 pesos or less.
+
+Question #6
+```{r}
+grades[10]
+```
+Is runs as N/A because grade [10] has no value
+
+Question #7
+```{r}
+Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
+```
+
+PART C
+```{r}
+x <- c(1, 2, 3, 4)
+y <- c(10, 20, 30, 40)
+x + y        
+x * 2   
+```
+```{r}
+z <- c(1, 2, 3, 4, 5, 6)
+short <- c(1, 0)
+z + short 
+```
+```{r}
+fruits <- c("apple", "banana", "cherry")
+append(fruits, "date")
+append(fruits, "kiwi", after = 1)
+```
+
+Question #8
+Short repeated its sequence to match z
+
+Question #9
+```{r}
+z + c(1, 0, 1)
+```
+Yes
+```{r}
+z + c(1, 0, 1, 1)
+```
+Does not work because longer object length is not a multiple of shorter
+object length
+
+PART D
+```{r}
+student <- list(name = "Maria Santos", age = 20, grades = c(88, 92, 79), is_enrolled = TRUE)
+```
+```{r}
+student["grades"]; class(student["grades"]) 
+```
+```{r}
+student[["grades"]]; class(student[["grades"]])
+```
+```{r}
+student$name
+```
+```{r}
+student$grades[2]
+```
+
+Question #10
+Single bracket returns a smaller list. While, double bracket returns the element itself
+
+Question #11
+list hold different types of objects, while a vector can only hold one type of data
+
+PART E
+```{r}
+inventory <- list(item = c("Notebook", "Pen", "Eraser"), price = c(25.50, 10.00, 5.00), in_stock = c(TRUE, TRUE, FALSE))
+
+inventory$item[inventory$in_stock]
+```
+```{r}
+inventory$item     <- append(inventory$item, "Ruler")
+inventory$price    <- append(inventory$price, 15.00)
+inventory$in_stock <- append(inventory$in_stock, TRUE)
+```
+
+Question #12
+inventory$in_stock extracts the logical vector, while inventory$item extracts the character vector
+
+Question #13
+Sorting, passing data around, and adding or deleting entries can all cause mismatches when the vectors are separate. Keeping related fields together in a list prevents these errors.
+
+CONCLUSION
+A vector stores many values of the same data type, so it works well for calculations and simple filtering. A list can combine different types and structures. Use a vector when your values are all the same kind and you need to do math on them, and use a list when you want to keep different kinds of data together.
+
+
+
+
+
 
 
 
