@@ -1,0 +1,179 @@
+---
+title: "RExercise#2_Evangelista"
+author: "Destini Maxim Evangelista"
+date: "2026-09-30"
+output: html_document
+---
+
+PART A - Arithmetic Operations
+```{r}
+a <- 17
+b <- 5
+
+a + b
+a - b
+a * b
+a / b
+```
+
+```{r}
+a %% b
+a %/% b
+```
+
+```{r}
+2^10
+```
+
+Question #1
+```{r}
+17 / 5
+17 %% 5
+17 %/% 5
+
+# They relate to each other through the Division Algorithm. The divide computes the exact number, modulo computes the leftover remainder and integer computes the whole number.
+```
+Question #2
+```{r}
+10%%3 # This computes the remainder and my prediction is 1
+10%/%3 # This computes the integer and my prediction is 3
+```
+PART B - Basic Data Types: typesof(), class(), and mode()
+```{r}
+x <- 42
+y <- 42L
+z <- "42"
+w <- TRUE
+v <- 3+2i
+
+typeof(x)
+typeof(y)
+typeof(z)
+typeof(w)
+typeof(v)
+```
+
+```{r}
+class(x)
+class(y)
+class(z)
+class(w)
+class(v)
+```
+
+```{r}
+mode(x)
+mode(y)
+mode(z)
+mode(w)
+mode(v)
+```
+
+Question #3
+```{r}
+x <- 42
+y <- 42L
+# Because the L after the number forces an integer
+```
+
+Question #4
+They differ because they measure three entirely different layers of R's design
+
+
+PART C - Type Conversion
+```{r}
+num_string <- "123"
+num <- as.numeric(num_string)
+typeof(num)
+class(num)
+mode(num)
+```
+
+```{r}
+as.logical(0)
+as.logical(1)
+```
+
+```{r}
+bad_string <- "hello123"
+num <- as.numeric(bad_string)
+```
+
+Question #5
+ Why do you think R is designed to give a warning here rather than crashing the whole script?
+ - its to allow data processing pipelines to continue running smoothly even when encountering unexpected errors
+
+ What are the risks of this behavior if you don't read your warnings?
+ - Because it can lead to the silent propagation of values that will silently corrupt calculations without you knowing
+
+
+Question #6
+```{r}
+# What do you think as.logical(2) and as.logical(-1) will produce?
+# - Based on my understanding it will produce both TRUE
+
+# Test it, then explain the rule R seems to be following.
+as.logical(2)
+as.logical(-1)
+# R follows a rule that converts any non-zero number to TRUE, and 0 FALSE
+```
+
+PART D - Strings paste(), and paste0 ()
+```{r}
+first <- "Juan"
+last <- "Dela Cruz"
+
+print(first)
+print(last)
+```
+
+```{r}
+first <- "Juan"
+last <- "Dela Cruz"
+
+paste(first, last)
+paste0(first, last)
+```
+
+```{r}
+paste(first, last, sep = "-")
+```
+
+```{r}
+full_name <- paste0(first, last, sep = "-")
+age <- 21
+paste0(full_name, "is", age, "years old.")
+```
+
+Question #7
+paste() combines items with a space and paste0() defaults to combining them with no seperator
+
+
+Question #8
+ No, because paste0() automatically coerces non-character inputs into strings
+
+
+PART E
+
+After running "5" + 5  It says "! non-numeric argument to binary operator"
+
+
+```{r}
+5 + 5
+```
+
+Question #9
+Because R requires explicit conversion to prevent uncertainty and protect data integrity
+
+Question #10
+R probably read the column in as characters or a factor instead of numbers, and that is likely what caused the error.
+
+CONCLUSION
+In R, data types such as logical, integer, double, and character determine how information is stored and handled. During arithmetic, R uses implicit coercion, which often turns logical values into numbers without notice but produces errors when characters are involved. Knowing typeof() and class() is important because they let you check the exact structure of your data before working with it, which helps avoid unexpected behavior. Being comfortable with functions like as.numeric() and as.character() also helps make sure combined data and calculations give predictable, accurate results without breaking your workflow.
+
+
+
+
+
+
+
