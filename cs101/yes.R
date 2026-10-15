@@ -8,3 +8,4 @@ num5 <- num1 - num2 - num3
 
 num6 <- num1 / num2 / num3
 num7 <- num1 * num2 * num3
+num8 <- num1 * num2 + num3
