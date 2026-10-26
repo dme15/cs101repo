@@ -1,0 +1,141 @@
+---
+title: "RExercise#6_Evangelista"
+author: "Destini Maxim Evangelista"
+date: "2026-10-16"
+output: html_document
+---
+PART A
+```{r}
+name   <- c("Ana", "Ben", "Cid", "Dex", "Eli")
+age    <- c(20, 21, 19, 22, 20)
+passed <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+```
+```{r}
+students <- data.frame(name = name, age = age, passed = passed)
+print(students)
+```
+```{r}
+typeof(students$name)
+class(students$name)
+```
+```{r}
+courses <- data.frame(
+  course_code = c("IS101", "IS102", "IS103"),
+  units       = c(3, 3, 2),
+  instructor  = c("Dr. P. Reyes", "Dr. R. Santos", "Dr. S. Cruz")
+)
+```
+
+Question #1
+-A data frame is a table-like structure in which rows represent individual records and columns represent the attributes of those records. Since every record needs a value for each attribute, all columns passed to data.frame() must be the same length. Otherwise, R will return an error about differing numbers of rows.
+
+Question #2
+-A data frame is a list underneath, and a list can hold elements of different types, so each column can have its own type (for example, character, numeric, and logical side by side). However, each column is a vector, and a vector can only hold one data type, so a single column cannot mix types. If you try, R coerces everything to one type.
+
+PART B
+```{r}
+students$age    
+students[["age"]]    
+students["age"]  
+```
+```{r}
+students[2, ]
+```
+```{r}
+students[3, "name"]
+```
+```{r}
+students[students$passed == TRUE, ]
+```
+```{r}
+students[students$passed == TRUE & students$age > 19, ]
+```
+
+Question #3
+```{r}
+class(students$age)   
+class(students[["age"]])
+class(students["age"])
+```
+-Using $ or [[ ]] gives you the column’s contents directly as a bare vector, while [ ] keeps the data frame structure and returns a data frame with just that one column.
+
+Question #4
+-& goes through the two logical vectors position by position and gives TRUE only when both conditions hold for that row. Using | instead is more permissive, since a row is kept if either condition holds.
+
+PART C
+```{r}
+str(students)
+```
+```{r}
+dim(students)   
+nrow(students)  
+ncol(students) 
+```
+```{r}
+names(students)
+```
+```{r}
+summary(students)
+```
+
+Question #5
+-Numeric (age): R gives the five-number summary along with the mean.
+Logical (passed): R counts how many values are TRUE and how many are FALSE, since the most useful summary of a yes/no column is the tally of each.
+Character (name): R reports only the number of entries, the class, and the mode. It does not compute any statistics.
+
+Question #6
+-I would use str() first, since it reveals how the data frame is built (its size and the type of each column). After I have confirmed the structure looks right, summary() is the better choice for seeing how the values are distributed.
+
+PART D
+```{r}
+students$year_level <- c(2, 3, 1, 4, 2)
+```
+```{r}
+students$passed <- NULL
+```
+```{r}
+students[order(students$age), ]
+```
+```{r}
+students[order(students$age, decreasing = TRUE), ]
+```
+
+Question #7
+-The filter can no longer do its job. Removing the passed column means students$passed now returns NULL. Since each step modifies the data frame, later steps only work if the structure they expect is still there.
+
+Question #8
+-
+1. students$age gives 20 21 19 22 20.
+2. order() returns the row positions that would arrange those ages from smallest to largest: 3 1 5 2 4. Row 3 has the lowest age (19), rows 1 and 5 tie at 20 and stay in their original order, then comes row 2 (21) and row 4 (22).
+3. This position vector is placed in the row slot of students[ , ], so R builds a new data frame by taking row 3, then row 1, row 5, row 2, and finally row 4.
+4. Leaving the column slot empty after the comma means “all columns,” so every selected row is taken as a whole. All columns move together, which keeps each age matched to the right student
+
+PART E
+```{r}
+grades <- data.frame(
+  name = c("Ana", "Ben", "Cid", "Dex", "Eli"),
+  midterm = c(85, 78, 92, 88, 70),
+  final = c(90, 82, 95, 84, 75)
+)
+
+grades$average <- (grades$midterm + grades$final) / 2
+```
+```{r}
+grades$remarks <- ifelse(grades$average >= 75, "Passed", "Failed")
+
+grades[grades$remarks == "Failed", c("name", "average")]
+```
+
+Question #9
+1. Add a column drop <- midterm - final, so a large positive value means a big decline between the two exams.
+2. Make sure average and remarks exist, so each student has a final remark.
+3. Filter to the students with remarks == "Failed" to focus on the group of interest.
+4. Sort that group by drop (descending) to see whether failing students tend to have large declines.
+5. Sort it again by midterm (ascending) to see whether they tend to have consistently low midterm scores.
+6. Compare the two sorted views. If the failing students are at the top of the biggest-drop list, a decline is the likelier factor. If they are at the lowest end of the midterm scores, a low midterm is.
+7. As a check, look at the students who passed. If some also have big drops or low midterms but still pass, that factor alone is not the cause.
+
+CONCLUSION
+-A data frame is a table in R made of equal-length vectors, with each vector acting as a column of one data type and each row as one record. It behaves like a list because columns can have different types, and like a vector because each column holds one type and can be filtered element by element. This makes it R’s main structure for tabular data, since subsetting, adding columns, and summarizing take only a few lines of code.
+
+
