@@ -1,0 +1,124 @@
+---
+title: "RExercise#9_Evangelista - R Lab: Basic Operations of R Programming"
+author: "Destini Maxim Evangelista"
+date: "2026-11-04"
+output: html_document
+---
+
+PART A
+a. The table below shows the data about shoe size and height. Create a data frame. Save it as shoesize.csv
+```{r}
+shoes <- data.frame(
+  ShoeSize = c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5,
+               13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0),
+  Height   = c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.5, 67.0, 71.0, 71.0,
+               77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0),
+  Gender   = c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M",
+               "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
+)
+write.csv(shoes, "shoesize.csv", row.names = FALSE)
+```
+
+b. Then try to import the saved csv into the R environment. Display the last 5 rows.
+```{r}
+shoes <- read.csv("shoesize.csv")
+tail(shoes, 5)
+```
+c. Describe the data by showing the structures and its content.
+```{r}
+str(shoes)
+
+head(shoes)
+```
+d. Inspect its dimensions. How many rows? How about columns?
+```{r}
+dim(shoes)
+nrow(shoes)
+ncol(shoes)
+```
+
+- 28 rows and 3 columns
+
+e. Inspect by using summary(). What is the difference of the summary() from str() function?
+```{r}
+summary(shoes)
+```
+
+- summary() shows statistics for each column (such as the minimum, maximum, and mean), while str() shows how the data is built, the number of rows and columns, each column’s data type, and the first few values.
+
+f. Create a subset by males and females with their corresponding shoe size and height. What its result? Show the R scripts
+```{r}
+males   <- subset(shoes, Gender == "M", select = c(ShoeSize, Height))
+females <- subset(shoes, Gender == "F", select = c(ShoeSize, Height))
+
+males
+females
+```
+
+- Each subset has 14 respondents. Males have larger shoe sizes (8.5 to 13) and heights (67 to 77) than females (shoe sizes 5 to 9.5, heights 59 to 71).
+
+g. Find the mean of shoe size and height of the respondents. Write the R scripts and its result.
+```{r}
+mean(shoes$ShoeSize)
+
+mean(shoes$Height)
+```
+
+- The mean shoe size is about 9.41 and the mean height is about 68.57 inches.
+
+h. Is there a relationship between shoe size and height? Why?
+
+- Yes, there is a relationship. Because body size scales together, so taller people generally have bigger feet
+
+Question #2
+
+```{r}
+shoes$Gender <- factor(shoes$Gender)
+levels(shoes$Gender)
+str(shoes)
+```
+
+Question #3
+
+- R Markdown uses the .Rmd file’s folder as the working directory, so a relative path always looks right next to the file, no matter where someone’s console was. When the .Rmd and CSV are shared together, the import works on any computer.
+
+Question #4
+```{r}
+str(shoes)
+```
+
+- Gender is chr as expected since it holds text labels, but a stray value like "N/A" can turn a numeric column such as ShoeSize into character, which breaks calculations, sorts alphabetically, and makes comparisons text-based..
+
+
+Question #5
+```{r}
+head(shoes)
+tail(shoes)
+```
+
+- Since head() displays just the top of the data, issues at the end of the file can slip through. tail() exposes them, including stray notes lines, total rows, and rows that are cut off or incomplete.
+
+Question #6
+a. Compute for the correlation
+```{r}
+cor(shoes$ShoeSize, shoes$Height)
+```
+
+b.
+```{r}
+shoes[shoes$ShoeSize >= 11, ]
+```
+
+Question #7
+```{r}
+females <- shoes[shoes$Gender == "F", ]
+males   <- shoes[shoes$Gender == "M", ]
+
+mean(females$Height)
+mean(males$Height)
+mean(females$ShoeSize)
+mean(males$ShoeSize)
+```
+
+- Males have a larger mean in both shoe size and height than females.
+- Yes, this dataset supports the idea shoe size and height are related WITHIN each gender group and gender is an important factor to account for seperately. 
