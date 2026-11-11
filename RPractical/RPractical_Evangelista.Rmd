@@ -3,8 +3,8 @@ title: "RPractical_Evangelista"
 author: "Destini Maxim Evangelista"
 date: "2026-11-11"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 PART A
@@ -166,6 +166,7 @@ tryCatch(rbind(students, bad),
            message("rbind failed: ", conditionMessage(e))
            NULL
          })
+#If two data frames have different column names, rbind() fails with an error. tryCatch() catches the error so the scripts prints a message instead of crashing
 ```
 
 PART D
