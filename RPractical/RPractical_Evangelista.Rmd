@@ -3,8 +3,8 @@ title: "RPractical_Evangelista"
 author: "Destini Maxim Evangelista"
 date: "2026-11-11"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 PART A
